@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tag"></i>
+                </div>
+                <h2>RFID LOST AND FIND MODEL</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><i class="fas fa-search"></i> Lost Elements</a></li>
+                <li><a href="found.html"><i class="fas fa-box-open"></i> Found Elements</a></li>
+                <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+                <li class="active"><a href="shop.html"><i class="fas fa-shopping-cart"></i> RFID Shop</a></li>
+                <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="search-container">
+                    <input type="text" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-actions">
+                    <div id="login-section">
+                        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                    <div id="user-section" style="display: none;">
+                        <div class="user-profile">
+                            <span class="user-name">John Doe</span>
+                            <div class="user-dropdown">
+                                <i class="fas fa-user-circle"></i>
+                                <div class="dropdown-content">
+                                    <a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a>
+                                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="shop-header">
+                    <h1><i class="fas fa-shopping-cart"></i> RFID Shop</h1>
+                    <p>Purchase RFID cards for your valuable items</p>
+                </div>
+
+                <div class="shop-container">
+                    <!-- Card Types Section -->
+                    <div class="card-types">
+                        <h2>Available RFID Cards</h2>
+                        <div class="card-grid">
+                            <div class="card-item" data-type="Standard" data-price="19">
+                                <img src="https://media.istockphoto.com/id/1364807917/photo/plastic-electronic-keys-for-intercom-on-the-womans-hand.jpg?s=612x612&w=0&k=20&c=iB6ySPtuHR5Tmsk5f7PMPnB9w9jBk9UA5Nr9bax_7QM=" alt="Standard RFID Card">
+                                <div class="card-details">
+                                    <h3>Standard RFID Card</h3>
+                                    <p>Basic protection for everyday items</p>
+                                    <div class="card-price">₹19</div>
+                                    <button class="select-card-btn">Select</button>
+                                </div>
+                            </div>
+                            <div class="card-item" data-type="Premium" data-price="29">
+                                <img src="https://m.media-amazon.com/images/I/81CIusUHsBL._AC_UF350,350_QL80_.jpg" alt="Premium RFID Card">
+                                <div class="card-details">
+                                    <h3>Premium RFID Card</h3>
+                                    <p>Enhanced range and durability</p>
+                                    <div class="card-price">₹29</div>
+                                    <button class="select-card-btn">Select</button>
+                                </div>
+                            </div>
+                            <div class="card-item" data-type="Ultra" data-price="39">
+                                <img src="https://static.ticimax.cloud/54431/uploads/urunresimleri/buyuk/alien-aln-9728-uhf-rfid-etiket-8-a19b.jpg" alt="Ultra RFID Card">
+                                <div class="card-details">
+                                    <h3>Ultra Premium RFID Card</h3>
+                                    <p>Maximum range and battery life</p>
+                                    <div class="card-price">₹39</div>
+                                    <button class="select-card-btn">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Form -->
+                    <div class="order-form">
+                        <h2>Order Your RFID Card</h2>
+                        <form id="rfid-order-form">
+                            <div class="form-group">
+                                <label for="customer-name">Full Name</label>
+                                <input type="text" id="customer-name" required placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email Address</label>
+                                <input type="email" id="customer-email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-type">Card Type</label>
+                                <select id="card-type" required>
+                                    <option value="">Select a card type</option>
+                                    <option value="Standard">Standard RFID Card - ₹499</option>
+                                    <option value="Premium">Premium RFID Card - ₹999</option>
+                                    <option value="Ultra">Ultra RFID Card - ₹1499</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" id="quantity" min="1" value="1" required>
+                            </div>
+                            <div class="order-summary">
+                                <h3>Order Summary</h3>
+                                <div class="summary-row">
+                                    <span>Card Type:</span>
+                                    <span id="summary-card-type">-</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Quantity:</span>
+                                    <span id="summary-quantity">1</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total Price:</span>
+                                    <span id="summary-price">₹0</span>
+                                </div>
+                            </div>
+                            <button type="submit" id="buy-card-btn" class="buy-btn">
+                                <span>Buy Now</span>
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="shop.js"></script>
+</body>
+</html>

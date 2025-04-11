@@ -474,3 +474,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+let map;
+let marker;
+
+function initMap() {
+    // Default Location (India ka Center)
+    const defaultLocation = { lat: 28.673539, lng: 77.493885 };
+
+    // Map Initialize Karo
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: defaultLocation,
+        zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        title: "Location Of The Lost Item",
+    });
+}
+
+function showLocation() {
+    const lat = parseFloat(document.getElementById("latitude").value);
+    const lng = parseFloat(document.getElementById("longitude").value);
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+        const newLocation = { lat: lat, lng: lng };
+
+        // Map Update Karo
+        map.setCenter(newLocation);
+        map.setZoom(15);
+        
+        // Marker Update Karo
+        marker.setPosition(newLocation);
+    } else {
+        alert("Please enter valid latitude and longitude!");
+    }
+}

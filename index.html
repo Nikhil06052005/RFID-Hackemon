@@ -6,6 +6,35 @@
     <title>RFID Lost and Find Model</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #map {
+            height: 300px;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .map-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .map-controls input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .map-controls button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .map-controls button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -108,10 +137,10 @@
                             <option>All Status</option>
                             <option>Found</option>
                             <option>Claimed</option>
-                            <option>Processing</option>
+                            <option>Lost</option>
                         </select>
                     </div>
-                    <button class="search-btn">Search</button>
+                    <button class="search-btn">Report</button>
                 </div>
 
                 <div class="item-details-section">
@@ -154,6 +183,11 @@
 
                     <div class="map-view">
                         <div id="map"></div>
+                        <div class="map-controls">
+                            <input type="text" id="latitude" placeholder="Enter Latitude">
+                            <input type="text" id="longitude" placeholder="Enter Longitude">
+                            <button onclick="showLocation()"><i class="fas fa-map-marker-alt"></i> Show Location</button>
+                        </div>
                         <div class="map-label">Map View</div>
                     </div>
 
@@ -207,14 +241,13 @@
     </div>
 
         
-        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-        <script src="firebase-config.js"></script>
-        <script src="auth.js"></script>
-        <script src="script.js"></script>
-    </body>
-    </html>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjaaw5YPxjd7Zk21owQ0BvY2ZA_57PqTo&callback=initMap" async defer></script>
     <script src="script.js"></script>
 </body>
 </html>
