@@ -1,0 +1,137 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.login-form {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #e6a832;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e6a832;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #e6a832;
+}
+
+.login-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.signup-link, .back-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #666;
+}
+
+.signup-link a, .back-link a {
+    color: #e6a832;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-link a:hover, .back-link a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    margin-top: 30px;
+}
+
+.signup-form {
+    max-width: 500px;
+}
+
+/* Logo styling for login/signup pages */
+.login-form .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login-form .logo-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #e6a832;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.login-form .logo-circle i {
+    font-size: 30px;
+    color: white;
+}
+
+.login-form h2 {
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}

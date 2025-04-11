@@ -425,3 +425,52 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
+
+// Check if user is logged in when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatus();
+});
+
+// Function to check login status
+function checkLoginStatus() {
+    // Check if user data exists in localStorage
+    const userData = localStorage.getItem('userData');
+    
+    if (userData) {
+        // User is logged in
+        const user = JSON.parse(userData);
+        showUserSection(user.name);
+    } else {
+        // User is not logged in
+        showLoginSection();
+    }
+}
+
+// Function to show user section
+function showUserSection(userName) {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('user-section').style.display = 'block';
+    document.querySelector('.user-name').textContent = userName;
+}
+
+// Function to show login section
+function showLoginSection() {
+    document.getElementById('login-section').style.display = 'block';
+    document.getElementById('user-section').style.display = 'none';
+}
+
+// Handle logout
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Clear user data from localStorage
+            localStorage.removeItem('userData');
+            // Show login section
+            showLoginSection();
+            // Redirect to home page if needed
+            // window.location.href = 'index.html';
+        });
+    }
+});

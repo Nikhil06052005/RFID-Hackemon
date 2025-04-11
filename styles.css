@@ -52,8 +52,8 @@ button {
 .sidebar {
     width: 250px;
     background-color: var(--primary-color);
-    color: #fff;
-    padding: 20px 0;
+    color: #020202;
+    padding: 25px 0;
     height: 100vh;
     position: fixed;
     left: 0;
@@ -507,7 +507,64 @@ button {
     flex-direction: column;
 }
 
-/* Continuing the CSS file */
+/* User profile styles */
+.user-profile {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.user-name {
+    margin-right: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-dropdown i {
+    font-size: 1.5rem;
+    color: #4a90e2;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a i {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .auth-info {
     margin-top: auto;
     flex: 1;

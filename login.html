@@ -5,83 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - RFID Lost and Find Model</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="auth-page">
-    <div class="auth-container">
-        <div class="auth-sidebar">
+<body>
+    <div class="login-container">
+        <div class="login-form">
             <div class="logo-container">
                 <div class="logo-circle">
                     <i class="fas fa-tag"></i>
                 </div>
                 <h2>RFID LOST AND FIND MODEL</h2>
             </div>
-            <div class="auth-info">
-                <h3>Welcome Back!</h3>
-                <p>Log in to access your account and manage your lost or found items.</p>
-                <div class="auth-features">
-                    <div class="feature">
-                        <i class="fas fa-search"></i>
-                        <span>Track lost items</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-box-open"></i>
-                        <span>Report found items</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-history"></i>
-                        <span>View claim history</span>
-                    </div>
-                </div>
+            <h1 class="login-title">Login to Your Account</h1>
+            
+            <div id="error-message" class="error-message"></div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
             </div>
-        </div>
-        <div class="auth-form-container">
-            <div class="auth-form">
-                <h2>Login</h2>
-                <form id="login-form">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                    </div>
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot password?</a>
-                    </div>
-                    <button type="submit" class="auth-btn">Login</button>
-                </form>
-                <div class="auth-divider">
-                    <span>OR</span>
-                </div>
-                <div class="social-login">
-                    <button class="google-btn">
-                        <i class="fab fa-google"></i>
-                        <span>Login with Google</span>
-                    </button>
-                    <button class="facebook-btn">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Login with Facebook</span>
-                    </button>
-                </div>
-                <div class="auth-footer">
-                    <p>Don't have an account? <a href="signup.html">Sign up</a></p>
-                </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button id="login-button" class="login-button">Login</button>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </div>
+            
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
