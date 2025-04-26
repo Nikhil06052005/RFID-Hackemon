@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID TopUp - Lost and Find Model</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="topup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tag"></i>
+                </div>
+                <h2 style="font-weight: bold; font-size: 18px; text-align: center; margin-top: 10px;">RFID LOST AND FIND MODEL</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html"><i class="fas fa-search"></i> Lost Elements</a>
+                </li>
+                <li class="active">
+                    <a href="Topup.html"><i class="fas fa-box-open"></i> TopUp</a>
+                </li>
+                <li>
+                    <a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a>
+                </li>
+                <li>
+                    <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+                </li>
+                <li>
+                    <a href="comparison.html"><i class="fas fa-exchange-alt"></i> Comparison</a>
+                </li>
+                <li>
+                    <a href="shop.html"><i class="fas fa-shopping-cart"></i> RFID Shop</a>
+                </li>
+                <li>
+                    <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="search-container">
+                    <input type="text" placeholder="Search by RFID tag or user name...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="user-actions">
+                    <!-- This will be shown when user is not logged in -->
+                    <div id="login-section">
+                        <a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    </div>
+                    
+                    <!-- This will be shown when user is logged in -->
+                    <div id="user-section" style="display: none;">
+                        <div class="user-profile">
+                            <span class="user-name">John Doe</span>
+                            <div class="user-dropdown">
+                                <i class="fas fa-user-circle"></i>
+                                <div class="dropdown-content">
+                                    <a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a>
+                                    <a href="my-items.html"><i class="fas fa-box"></i> My Items</a>
+                                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="topup-header">
+                    <h1><i class="fas fa-wallet"></i> RFID Wallet TopUp</h1>
+                    <p>Add money to your RFID wallet for seamless campus transactions</p>
+                </div>
+
+                <div class="topup-container">
+                    <!-- Wallet Balance Section -->
+                    <div class="wallet-section">
+                        <div class="wallet-card">
+                            <div class="wallet-balance">
+                                <h3>Current Balance</h3>
+                                <div class="balance-amount">₹<span id="current-balance">0</span></div>
+                                <div class="rfid-tag">RFID Tag: <span id="rfid-number">RF-9876-5432-1098</span></div>
+                            </div>
+                            <div class="wallet-actions">
+                                <button id="transaction-history-btn"><i class="fas fa-history"></i> Transaction History</button>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <h3>Quick Actions</h3>
+                            <div class="action-buttons">
+                                <button class="action-btn" data-amount="100">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Add ₹50</span>
+                                </button>
+                                <button class="action-btn" data-amount="200">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Add ₹100</span>
+                                </button>
+                                <button class="action-btn" data-amount="500">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Add ₹200</span>
+                                </button>
+                                <button class="action-btn" data-amount="1000">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Add ₹500</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TopUp Form Section -->
+                    <div class="topup-form-section">
+                        <h3>Add Money to Wallet</h3>
+                        <form id="topup-form">
+                            <div class="form-group">
+                                <label for="topup-amount">Amount (₹)</label>
+                                <input type="number" id="topup-amount" min="10" placeholder="Enter amount" required>
+                                <small>Minimum amount: ₹10</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Method</label>
+                                <div class="payment-methods">
+                                    <div class="payment-method active">
+                                        <input type="radio" name="payment-method" id="upi" value="upi" checked>
+                                        <label for="upi">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <span>UPI</span>
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" name="payment-method" id="card" value="card">
+                                        <label for="card">
+                                            <i class="fas fa-credit-card"></i>
+                                            <span>Card</span>
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" name="payment-method" id="netbanking" value="netbanking">
+                                        <label for="netbanking">
+                                            <i class="fas fa-university"></i>
+                                            <span>Net Banking</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group payment-details" id="upi-details">
+                                <label for="upi-id">UPI ID</label>
+                                <input type="text" id="upi-id" placeholder="yourname@upi">
+                            </div>
+                            <div class="form-group payment-details" id="card-details" style="display: none;">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX">
+                                <div class="card-extra">
+                                    <div>
+                                        <label for="expiry">Expiry</label>
+                                        <input type="text" id="expiry" placeholder="MM/YY">
+                                    </div>
+                                    <div>
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" placeholder="XXX">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group payment-details" id="netbanking-details" style="display: none;">
+                                <label for="bank-select">Select Bank</label>
+                                <select id="bank-select">
+                                    <option value="">Select your bank</option>
+                                    <option value="sbi">State Bank of India</option>
+                                    <option value="hdfc">HDFC Bank</option>
+                                    <option value="icici">ICICI Bank</option>
+                                    <option value="axis">Axis Bank</option>
+                                    <option value="pnb">Punjab National Bank</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="fee-info">
+                                    <span>Service Fee (2%): </span>
+                                    <span id="service-fee">₹0</span>
+                                </div>
+                                <div class="total-info">
+                                    <span>Total Amount: </span>
+                                    <span id="total-amount">₹0</span>
+                                </div>
+                            </div>
+                            <button type="submit" id="proceed-btn" class="proceed-btn">
+                                <span>Proceed to Pay</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Subscription Plans Section -->
+                <div class="subscription-section">
+                    <h2>Monthly Subscription Plans</h2>
+                    <div class="plan-cards">
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3>Basic Plan</h3>
+                                <div class="plan-price">₹19<span>/month</span></div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 5% discount on all campus purchases</li>
+                                    <li><i class="fas fa-check"></i> No service fee on top-ups</li>
+                                    <li><i class="fas fa-check"></i> Basic transaction reports</li>
+                                </ul>
+                            </div>
+                            <button class="subscribe-btn">Subscribe Now</button>
+                        </div>
+                        <div class="plan-card featured">
+                            <div class="plan-badge">Popular</div>
+                            <div class="plan-header">
+                                <h3>Premium Plan</h3>
+                                <div class="plan-price">₹50<span>/month</span></div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 10% discount on all campus purchases</li>
+                                    <li><i class="fas fa-check"></i> No service fee on top-ups</li>
+                                    <li><i class="fas fa-check"></i> Detailed transaction reports</li>
+                                    <li><i class="fas fa-check"></i> Priority support</li>
+                                    <li><i class="fas fa-check"></i> Exclusive event access</li>
+                                </ul>
+                            </div>
+                            <button class="subscribe-btn">Subscribe Now</button>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <h3>Hostel Plan</h3>
+                                <div class="plan-price">₹149<span>/month</span></div>
+                            </div>
+                            <div class="plan-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 8% discount on all campus purchases</li>
+                                    <li><i class="fas fa-check"></i> No service fee on top-ups</li>
+                                    <li><i class="fas fa-check"></i> Basic transaction reports</li>
+                                    <li><i class="fas fa-check"></i> Hostel meal discounts</li>
+                                </ul>
+                            </div>
+                            <button class="subscribe-btn">Subscribe Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Where to Use Section -->
+                <div class="usage-section">
+                    <h2>Where to Use Your RFID Balance</h2>
+                    <div class="usage-cards">
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Campus Canteen</h3>
+                            <p>Pay for meals and snacks at all campus food outlets</p>
+                        </div>
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Stationery Shop</h3>
+                            <p>Purchase books, stationery and study materials</p>
+                        </div>
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <h3>Print Services</h3>
+                            <p>Pay for printing, scanning and photocopying</p>
+                        </div>
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <h3>Event Tickets</h3>
+                            <p>Buy tickets for campus events and workshops</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="topup.js"></script>
+</body>
+</html>

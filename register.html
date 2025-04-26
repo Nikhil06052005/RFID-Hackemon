@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register RFID Tag - RFID Lost and Find Model</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="register.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-tag"></i>
+                </div>
+                <h2>RFID LOST AND FIND MODEL</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html"><i class="fas fa-search"></i> Lost Elements</a>
+                </li>
+                <li>
+                    <a href="Topup.html"><i class="fas fa-box-open"></i> TopUp </a>
+                </li>
+                <li>
+                    <a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a>
+                </li>
+                <li class="active">
+                    <a href="register.html"><i class="fas fa-id-card"></i> Register Tag</a>
+                </li>
+                <li>
+                    <a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+                </li>
+                <li>
+                    <a href="comparison.html"><i class="fas fa-exchange-alt"></i> Comparison</a>
+                </li>
+                <li>
+                    <a href="shop.html"><i class="fas fa-shopping-cart"></i> RFID Shop</a>
+                </li>
+                <li>
+                    <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1><i class="fas fa-id-card"></i> Register RFID Tag</h1>
+                </div>
+                <div class="user-actions">
+                    <button id="refresh-btn" class="action-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    <button id="help-btn" class="action-btn"><i class="fas fa-question-circle"></i> Help</button>
+                </div>
+            </div>
+
+            <div class="register-container">
+                <div class="register-header">
+                    <h2>Register New RFID Tag</h2>
+                    <p>Fill in the details below and scan your RFID tag to register it in the system</p>
+                </div>
+
+                <div class="register-form-container">
+                    <div class="form-section">
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="item-name">Item Name*</label>
+                                <input type="text" id="item-name" name="item-name" required placeholder="Enter the name of the item">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="owner-name">Owner's Full Name*</label>
+                                <input type="text" id="owner-name" name="owner-name" required placeholder="Enter owner's full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="owner-email">Owner's Email*</label>
+                                <input type="email" id="owner-email" name="owner-email" required placeholder="Enter owner's email address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="owner-phone">Owner's Phone Number*</label>
+                                <input type="tel" id="owner-phone" name="owner-phone" required placeholder="Enter owner's phone number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="item-description">Item Description</label>
+                                <textarea id="item-description" name="item-description" rows="4" placeholder="Enter a detailed description of the item"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="item-status">Status*</label>
+                                <select id="item-status" name="item-status" required>
+                                    <option value="Active">Active</option>
+                                    <option value="Lost">Lost</option>
+                                    <option value="Found">Found</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="scan-btn" class="scan-btn">
+                                    <i class="fas fa-wifi"></i> Scan RFID Tag
+                                </button>
+                                <button type="submit" id="submit-btn" class="submit-btn" disabled>
+                                    <i class="fas fa-save"></i> Register Tag
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="scan-section">
+                        <div class="rfid-scanner">
+                            <div class="scanner-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="scanner-status" id="scanner-status">
+                                Ready to scan
+                            </div>
+                            <div class="rfid-tag-info" id="rfid-tag-info">
+                                <div class="tag-id">Tag ID: <span id="tag-id">Not scanned yet</span></div>
+                                <div class="tag-uid">UID: <span id="tag-uid">Not available</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="instructions">
+                            <h3>How to Register a Tag</h3>
+                            <ol>
+                                <li>Fill in all required fields in the form</li>
+                                <li>Click the "Scan RFID Tag" button</li>
+                                <li>Place the RFID tag near the reader when prompted</li>
+                                <li>Once the tag is detected, click "Register Tag" to complete the process</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-registrations">
+                    <h3>Recently Registered Tags</h3>
+                    <div class="registration-list" id="registration-list">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i> Loading recent registrations...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanning Modal -->
+    <div id="scanning-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-wifi"></i> Scanning RFID Tag</h2>
+            </div>
+            <div class="modal-body">
+                <div class="scanning-animation">
+                    <div class="scanner-waves"></div>
+                    <div class="scanner-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                </div>
+                <div class="scanning-message">
+                    <p>Please place your RFID tag near the reader...</p>
+                    <div class="scan-status" id="modal-scan-status">Waiting for tag...</div>
+                </div>
+                <div class="scanning-actions">
+                    <button id="cancel-scan-btn" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header success">
+                <h2><i class="fas fa-check-circle"></i> Registration Successful</h2>
+            </div>
+            <div class="modal-body">
+                <div class="success-message">
+                    <p>The RFID tag has been successfully registered!</p>
+                    <div class="tag-details">
+                        <div class="tag-detail">Tag ID: <span id="success-tag-id"></span></div>
+                        <div class="tag-detail">Item: <span id="success-item-name"></span></div>
+                        <div class="tag-detail">Owner: <span id="success-owner-name"></span></div>
+                    </div>
+                </div>
+                <div class="success-actions">
+                    <button id="register-another-btn" class="secondary-btn">Register Another</button>
+                    <button id="view-details-btn" class="primary-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>
